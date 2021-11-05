@@ -1,6 +1,7 @@
 package com.alkemy.disneyapi.controller;
 
 import com.alkemy.disneyapi.dto.GenreDTO;
+import com.alkemy.disneyapi.exception.ParamNotFound;
 import com.alkemy.disneyapi.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class GenreController {
     @Autowired
     private GenreService genreService;
 
-    //TODO GET /genres
+    //GET /genres
     @GetMapping
     public ResponseEntity<List<GenreDTO>> getAllGenres() {
         List<GenreDTO> genreDtoList = genreService.getAllGenres();
@@ -32,7 +33,7 @@ public class GenreController {
     //TODO GET /genres/{id}
     @GetMapping("/{id}")
     public ResponseEntity<GenreDTO> getGenreById(@PathVariable Long id) {
-        GenreDTO genreDto = genreService.getGenreById();
+        GenreDTO genreDto = genreService.getGenreById(id);
         return ResponseEntity.ok().body(genreDto);
     }
 

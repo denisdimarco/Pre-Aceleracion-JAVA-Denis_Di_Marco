@@ -1,5 +1,6 @@
 package com.alkemy.disneyapi.service.impl;
 
+import com.alkemy.disneyapi.exception.ParamNotFound;
 import com.alkemy.disneyapi.mapper.GenreMapper;
 import com.alkemy.disneyapi.dto.GenreDTO;
 import com.alkemy.disneyapi.entity.GenreEntity;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GenreServiceImpl implements GenreService {
@@ -23,8 +25,12 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public GenreDTO getGenreById() {
-        return null;
+    public GenreDTO getGenreById(Long genreId) {
+        Optional<GenreEntity> genreEntity = this.genreRepository.findById(genreId);
+        if (!genreEntity.isPresent()) {
+            throw new ParamNotFound("Not valid Genre ID");
+        }
+        return genreMapper.genreEntity2DTO(genreEntity.get());
     }
 
     public GenreDTO saveGenreToDB(GenreDTO genreDto) {
