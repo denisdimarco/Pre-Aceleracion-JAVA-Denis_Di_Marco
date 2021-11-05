@@ -18,8 +18,8 @@ public class GenreServiceImpl implements GenreService {
     private GenreMapper genreMapper;
 
     public List<GenreDTO> getAllGenres() {
-        List<GenreEntity> genreEntites = genreRepository.findAll();
-        return genreMapper.genreEntityList2DTOList(genreEntites);
+        List<GenreEntity> genreEntities = genreRepository.findAll();
+        return genreMapper.genreEntityList2DTOList(genreEntities);
     }
 
     @Override
