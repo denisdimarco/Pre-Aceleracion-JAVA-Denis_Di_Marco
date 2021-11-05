@@ -36,7 +36,7 @@ public class GenreController {
         return ResponseEntity.ok().body(genreDto);
     }
 
-    //TODO POST /genres
+    //POST /genres
     @PostMapping
     public ResponseEntity<GenreDTO> postNewGenre(@RequestBody GenreDTO genreDto) {
         GenreDTO savedGenreFromDB = genreService.saveGenreToDB(genreDto);

@@ -17,9 +17,9 @@ public class GenreServiceImpl implements GenreService {
     @Autowired
     private GenreMapper genreMapper;
 
-    @Override
     public List<GenreDTO> getAllGenres() {
-        return null;
+        List<GenreEntity> genreEntites = genreRepository.findAll();
+        return genreMapper.genreEntityList2DTOList(genreEntites);
     }
 
     @Override
