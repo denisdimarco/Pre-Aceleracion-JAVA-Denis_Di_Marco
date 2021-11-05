@@ -7,4 +7,8 @@ import java.util.List;
 public interface GenreService {
 
     List<GenreDTO> getAllGenres();
+
+    GenreDTO getGenreById();
+
+    GenreDTO saveGenreToDB(GenreDTO genreDto);
 }
