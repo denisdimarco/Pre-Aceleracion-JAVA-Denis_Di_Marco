@@ -1,14 +1,15 @@
 package com.alkemy.disneyapi.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 //@JsonInclude(JsonInclude.Include.NON_NULL)
-public class GenreDTO {
-    private Long id;
-    private String name;
+public class MovieBasicDTO {
+
     private String image;
+    private String title;
+    private String creationDate;
+
 }
