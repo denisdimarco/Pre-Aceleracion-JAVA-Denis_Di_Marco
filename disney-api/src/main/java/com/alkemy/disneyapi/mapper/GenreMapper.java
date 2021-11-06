@@ -35,6 +35,8 @@ public class GenreMapper {
         return genreDtoList;
     }
 
-
-
+    public void genreEntityRefreshValues(GenreEntity entity, GenreDTO dto) {
+        entity.setImage(dto.getImage());
+        entity.setName(dto.getName());
+    }
 }

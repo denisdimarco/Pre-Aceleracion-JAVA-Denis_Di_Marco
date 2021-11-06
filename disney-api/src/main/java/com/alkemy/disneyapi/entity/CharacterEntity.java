@@ -1,7 +1,6 @@
 package com.alkemy.disneyapi.entity;
 
 
-import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
@@ -19,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "character")
+@Table(name = "disney_character")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE character SET deleted = true WHERE id=? ")
+@SQLDelete(sql = "UPDATE character SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
 public class CharacterEntity {
 
@@ -42,7 +41,7 @@ public class CharacterEntity {
 
     private boolean deleted = Boolean.FALSE;
 
-    @ManyToMany(mappedBy = "characters", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "characters", cascade = CascadeType.ALL)
     private List<MovieEntity> movies = new ArrayList<>();
 
 }

@@ -28,7 +28,7 @@ public class GenreServiceImpl implements GenreService {
     public GenreDTO getGenreById(Long genreId) {
         Optional<GenreEntity> genreEntity = this.genreRepository.findById(genreId);
         if (!genreEntity.isPresent()) {
-            throw new ParamNotFound("Not valid Genre ID");
+            throw new ParamNotFound("Genre ID not valid");
         }
         return genreMapper.genreEntity2DTO(genreEntity.get());
     }
@@ -37,6 +37,18 @@ public class GenreServiceImpl implements GenreService {
         GenreEntity genreEntity = genreMapper.genreDTO2Entity(genreDto);
         GenreEntity savedEntity = genreRepository.save(genreEntity);
         return genreMapper.genreEntity2DTO(savedEntity);
+    }
+
+
+    public GenreDTO updateGenreInDB(Long id, GenreDTO genreNewData) {
+        Optional<GenreEntity> entity = genreRepository.findById(id);
+        if (!entity.isPresent()) {
+            throw new ParamNotFound("Genre Id not valid");
+        }
+        genreMapper.genreEntityRefreshValues(entity.get(), genreNewData);
+        GenreEntity entitySaved = genreRepository.save(entity.get());
+        return genreMapper.genreEntity2DTO(entitySaved);
+
     }
 
 

@@ -12,4 +12,6 @@ public interface GenreService {
     GenreDTO getGenreById(Long genreId);
 
     GenreDTO saveGenreToDB(GenreDTO genreDto);
+
+    GenreDTO updateGenreInDB(Long id, GenreDTO genreNewData);
 }
