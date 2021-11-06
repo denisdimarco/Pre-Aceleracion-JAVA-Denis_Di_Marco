@@ -51,5 +51,9 @@ public class GenreServiceImpl implements GenreService {
 
     }
 
+    public void deleteGenreInDB(Long id) {
+        this.genreRepository.deleteById(id);
+    }
+
 
 }

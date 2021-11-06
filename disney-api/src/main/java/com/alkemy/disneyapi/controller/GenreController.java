@@ -49,6 +49,12 @@ public class GenreController {
 
     //TODO DELETE /genres/{id}
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteGenreById(@PathVariable Long id) {
+        genreService.deleteGenreInDB(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 
 
 
