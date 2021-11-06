@@ -18,5 +18,5 @@ public class CharacterDTO {
     private String history;
 
     //TODO: Check if is MovieBasicDTO or MovieDTO
-    private List<MovieBasicDTO> movies;
+    private List<MovieDTO> movies;
 }
