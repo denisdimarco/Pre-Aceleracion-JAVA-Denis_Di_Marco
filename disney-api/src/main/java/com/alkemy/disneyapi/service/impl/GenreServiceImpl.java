@@ -55,5 +55,4 @@ public class GenreServiceImpl implements GenreService {
         this.genreRepository.deleteById(id);
     }
 
-
 }
