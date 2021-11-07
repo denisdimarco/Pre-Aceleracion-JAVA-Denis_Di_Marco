@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("genres")
 public class GenreController {
 
-    //TODO complete GenreService class
     @Autowired
     private GenreService genreService;
 
@@ -25,7 +24,6 @@ public class GenreController {
         return ResponseEntity.ok().body(genreDtoList);
     }
 
-    //TODO GET /genres/{id}
     @GetMapping("/{id}")
     public ResponseEntity<GenreDTO> getGenreById(@PathVariable Long id) {
         GenreDTO genreDto = genreService.getGenreById(id);
@@ -39,15 +37,12 @@ public class GenreController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedGenreFromDB);
     }
 
-
     //PUT /genres/{id}
     @PutMapping("{id}")
     public ResponseEntity<GenreDTO> updateGenreById(@PathVariable Long id, @RequestBody GenreDTO genreDto){
         GenreDTO updatedGenre = genreService.updateGenreInDB(id, genreDto);
         return ResponseEntity.ok().body(updatedGenre);
     }
-
-    //TODO DELETE /genres/{id}
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteGenreById(@PathVariable Long id) {
