@@ -18,7 +18,7 @@ public class MovieDTO {
     private Integer rating;
     private Long genreId;
 
-    //TODO Check if GenreDTO genre its ok or its only the name field of the genre.
+    //TODO Check if GenreDTO genre its ok or its only the name field of the genre (and how to put that).
     private GenreDTO genre;
 
     private List<CharacterDTO> charactersList;

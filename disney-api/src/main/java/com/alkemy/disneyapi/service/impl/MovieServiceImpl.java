@@ -1,6 +1,7 @@
 package com.alkemy.disneyapi.service.impl;
 
 import com.alkemy.disneyapi.dto.MovieBasicDTO;
+import com.alkemy.disneyapi.dto.MovieDTO;
 import com.alkemy.disneyapi.entity.MovieEntity;
 import com.alkemy.disneyapi.mapper.MovieMapper;
 import com.alkemy.disneyapi.repository.MovieRepository;
@@ -20,8 +21,13 @@ public class MovieServiceImpl implements MovieService {
 
     public List<MovieBasicDTO> getAllMoviesLite() {
         List<MovieEntity> entitiesList = movieRepository.findAll();
-        return movieMapper.movieEntityList2BasicList(entitiesList);
+        return movieMapper.movieEntityList2BasicDTOList(entitiesList);
     }
 
+    public MovieDTO saveNewMovie(MovieDTO movieDTO) {
+        MovieEntity movieEntity = movieMapper.movieDTO2Entity(movieDTO);
+        MovieEntity entitySaved = movieRepository.save(movieEntity);
+        return movieMapper.movieEntity2DTO(entitySaved, true);
+    }
 
 }

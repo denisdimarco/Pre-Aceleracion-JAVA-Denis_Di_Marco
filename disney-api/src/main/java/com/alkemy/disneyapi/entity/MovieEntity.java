@@ -20,7 +20,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -66,7 +68,7 @@ public class MovieEntity {
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "character_id")
     )
-    private Set<CharacterEntity> characters = new HashSet<>();
+    private List<CharacterEntity> characters = new ArrayList<>();
 
     public void addCharacterToMovie(CharacterEntity character) {
         characters.add(character);

@@ -1,19 +1,23 @@
 package com.alkemy.disneyapi.mapper;
 
 
-import com.alkemy.disneyapi.dto.GenreDTO;
+import com.alkemy.disneyapi.dto.CharacterDTO;
 import com.alkemy.disneyapi.dto.MovieBasicDTO;
-
-import com.alkemy.disneyapi.entity.GenreEntity;
+import com.alkemy.disneyapi.dto.MovieDTO;
+import com.alkemy.disneyapi.entity.CharacterEntity;
 import com.alkemy.disneyapi.entity.MovieEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MovieMapper {
 
+    @Autowired
+    private CharacterMapper characterMapper;
 
     /* Entity to BasicDTO */
     public MovieBasicDTO movieEntity2BasicDTO(MovieEntity entity) {
@@ -25,7 +29,7 @@ public class MovieMapper {
     }
 
     /* List<Entity> to List<BasicDTO> */
-    public List<MovieBasicDTO> movieEntityList2BasicList(List<MovieEntity> entityList) {
+    public List<MovieBasicDTO> movieEntityList2BasicDTOList(List<MovieEntity> entityList) {
         List<MovieBasicDTO> basicDTOList = new ArrayList<>();
         for (MovieEntity entity : entityList) {
             basicDTOList.add(movieEntity2BasicDTO(entity));
@@ -33,7 +37,51 @@ public class MovieMapper {
         return basicDTOList;
     }
 
+    /* DTO to Entity */
+    public MovieEntity movieDTO2Entity(MovieDTO movieDTO) {
+        MovieEntity entity = new MovieEntity();
 
+        entity.setImage(movieDTO.getImage());
+        entity.setTitle(movieDTO.getTitle());
+        entity.setCreationDate(this.string2LocalDate(movieDTO.getCreationDate()));
+        entity.setRating(movieDTO.getRating());
+        entity.setGenreId((movieDTO.getGenreId()));
+
+        List<CharacterEntity> charactersList = this.characterMapper.characterDTOList2EntityList(movieDTO.getCharactersList());
+        entity.setCharacters(charactersList);
+        return entity;
+    }
+
+    /* Entity to DTO */
+    //Si es de Entidad a DTO debe cargar el ID que se genero en BD
+    public MovieDTO movieEntity2DTO(MovieEntity movieEntity, boolean loadCharacters) {
+        MovieDTO dto = new MovieDTO();
+        dto.setId(movieEntity.getId());
+        dto.setImage(movieEntity.getImage());
+        dto.setTitle(movieEntity.getTitle());
+        dto.setCreationDate(movieEntity.getCreationDate().toString());
+        dto.setRating(movieEntity.getRating());
+        dto.setGenreId(movieEntity.getGenreId());
+        //TODO tiene que devolver nombre de genero?
+        //dto.setGenre(movieEntity.getGenre());
+
+        if (loadCharacters) {
+            List<CharacterDTO> characterDTOS = this.characterMapper.characterEntityList2DTOList(movieEntity.getCharacters(), false);
+        }
+        return dto;
+    }
+
+    /* List<Entity> to List<DTO> */
+    public List<MovieDTO> movieEntityList2DTOList(List<MovieEntity> entities, boolean loadCharacters) {
+        List<MovieDTO> dtos = new ArrayList<>();
+
+        for (MovieEntity entity : entities) {
+            dtos.add(movieEntity2DTO(entity, loadCharacters));
+        }
+        return dtos;
+    }
+
+    /* String to LocalDate converter */
     private LocalDate string2LocalDate(String stringDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(stringDate, formatter);
