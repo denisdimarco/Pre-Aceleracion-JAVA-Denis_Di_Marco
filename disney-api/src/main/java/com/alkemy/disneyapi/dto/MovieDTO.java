@@ -21,6 +21,6 @@ public class MovieDTO {
     //TODO Check if GenreDTO genre its ok or its only the name field of the genre (and how to put that).
     private GenreDTO genre;
 
-    private List<CharacterDTO> charactersList;
+    private List<CharacterDTO> characters;
 
 }

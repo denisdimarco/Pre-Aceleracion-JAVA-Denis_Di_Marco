@@ -7,13 +7,13 @@ import com.alkemy.disneyapi.dto.MovieDTO;
 import com.alkemy.disneyapi.entity.CharacterEntity;
 import com.alkemy.disneyapi.entity.MovieEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
-
+@Component
 public class MovieMapper {
 
     @Autowired
@@ -47,7 +47,7 @@ public class MovieMapper {
         entity.setRating(movieDTO.getRating());
         entity.setGenreId((movieDTO.getGenreId()));
 
-        List<CharacterEntity> charactersList = this.characterMapper.characterDTOList2EntityList(movieDTO.getCharactersList());
+        List<CharacterEntity> charactersList = this.characterMapper.characterDTOList2EntityList(movieDTO.getCharacters());
         entity.setCharacters(charactersList);
         return entity;
     }
