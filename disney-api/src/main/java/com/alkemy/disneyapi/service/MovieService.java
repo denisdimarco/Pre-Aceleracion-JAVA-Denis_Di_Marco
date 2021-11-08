@@ -20,4 +20,6 @@ public interface MovieService {
     void deleteCharacterFromMovie(Long movieId, Long characterId);
 
     void addCharacterToMovie(Long movieId, Long characterId);
+
+    List<MovieDTO> getMoviesByFilters(String title, String genre, String order);
 }
