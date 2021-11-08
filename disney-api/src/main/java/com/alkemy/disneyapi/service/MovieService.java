@@ -18,4 +18,6 @@ public interface MovieService {
     void deleteMovie(Long id);
 
     void deleteCharacterFromMovie(Long movieId, Long characterId);
+
+    void addCharacterToMovie(Long movieId, Long characterId);
 }

@@ -81,12 +81,21 @@ public class MovieServiceImpl implements MovieService {
 
     }
 
+    // Aditional Methods
     public MovieEntity getMovieEntityById(Long movieId) {
         Optional<MovieEntity> movie = movieRepository.findById(movieId);
         if (!movie.isPresent()) {
             throw new ParamNotFound("Movie Id not found");
         }
         return movie.get();
+    }
+
+    public void addCharacterToMovie(Long movieId, Long characterId) {
+        MovieEntity movie = this.getMovieEntityById(movieId);
+        movie.getCharacters().size();
+        CharacterEntity characterEntity = characterService.getCharacterEntityById(characterId);
+        movie.addCharacterToMovie(characterEntity);
+        movieRepository.save(movie);
     }
 
 

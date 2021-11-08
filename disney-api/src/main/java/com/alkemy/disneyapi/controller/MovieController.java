@@ -37,49 +37,47 @@ public class MovieController {
     //TODO 9. CREACION, EDICION Y ELIMINACION DE PELICULA.
 
     //  POST /movies OK!
-        @PostMapping
-        public ResponseEntity<MovieDTO> postNewMovie(@RequestBody MovieDTO movieDto) {
-            MovieDTO savedMovie = movieService.saveNewMovie(movieDto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedMovie);
-        }
+    @PostMapping
+    public ResponseEntity<MovieDTO> postNewMovie(@RequestBody MovieDTO movieDto) {
+        MovieDTO savedMovie = movieService.saveNewMovie(movieDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedMovie);
+    }
+
+    // POST /movies/{movieId}/character/{characterId} OK!
+    @PostMapping("/{movieId}/character/{characterId}")
+    public ResponseEntity<Void> addCharacterToMovie(@PathVariable Long movieId, @PathVariable Long characterId) {
+        movieService.addCharacterToMovie(movieId, characterId);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
     // PUT /movies/{id} (update movie by ID) OK!
-        @PutMapping("/{id}")
-        public ResponseEntity<MovieDTO> updateMovieById(@PathVariable Long id, @RequestBody MovieDTO movieNewData) {
-            MovieDTO updatedMovie = movieService.updateMovieById(id, movieNewData);
-            return  ResponseEntity.status(HttpStatus.ACCEPTED).body(updatedMovie);
-        }
+    @PutMapping("/{id}")
+    public ResponseEntity<MovieDTO> updateMovieById(@PathVariable Long id, @RequestBody MovieDTO movieNewData) {
+        MovieDTO updatedMovie = movieService.updateMovieById(id, movieNewData);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatedMovie);
+    }
 
     //  DELETE /movies/{id} (remove movie byId)
-        @DeleteMapping("/{id}")
-        public ResponseEntity<Void> deleteMovieById(@PathVariable Long id) {
-            movieService.deleteMovie(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMovieById(@PathVariable Long id) {
+        movieService.deleteMovie(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
 
-    //  TODO DELETE /movies/{genreId}/character/{characterId} (remove character from movie by ID)
-        @DeleteMapping("/{movieId}/character/{characterId}")
-        public ResponseEntity<Void> removeCharacterFromMovie(@PathVariable Long movieId, @PathVariable Long characterId) {
-            movieService.deleteCharacterFromMovie(movieId, characterId);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
-        }
+    //  DELETE /movies/{genreId}/character/{characterId} (remove character from movie by ID)
+
+    @DeleteMapping("/{movieId}/character/{characterId}")
+    public ResponseEntity<Void> removeCharacterFromMovie(@PathVariable Long movieId, @PathVariable Long characterId) {
+        movieService.deleteCharacterFromMovie(movieId, characterId);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
 
 
     //TODO 10. BUSQUEDA DE PELICULAS (por filtros)
     // /movies?name=name
     // /movies?genre=genderId
     // /movies?order=ASC | DESC
-
-
-
-
-
-
-
-
-
-
 
 
 }
