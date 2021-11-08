@@ -47,13 +47,12 @@ public class MovieMapper {
         entity.setRating(movieDTO.getRating());
         entity.setGenreId((movieDTO.getGenreId()));
 
-        List<CharacterEntity> charactersList = this.characterMapper.characterDTOList2EntityList(movieDTO.getCharacters());
-        entity.setCharacters(charactersList);
+        List<CharacterEntity> characters = this.characterMapper.characterDTOList2EntityList(movieDTO.getCharacters());
+        entity.setCharacters(characters);
         return entity;
     }
 
     /* Entity to DTO */
-    //Si es de Entidad a DTO debe cargar el ID que se genero en BD
     public MovieDTO movieEntity2DTO(MovieEntity movieEntity, boolean loadCharacters) {
         MovieDTO dto = new MovieDTO();
         dto.setId(movieEntity.getId());
@@ -62,11 +61,10 @@ public class MovieMapper {
         dto.setCreationDate(movieEntity.getCreationDate().toString());
         dto.setRating(movieEntity.getRating());
         dto.setGenreId(movieEntity.getGenreId());
-        //TODO tiene que devolver nombre de genero?
-        //dto.setGenre(movieEntity.getGenre());
 
         if (loadCharacters) {
-            List<CharacterDTO> characterDTOS = this.characterMapper.characterEntityList2DTOList(movieEntity.getCharacters(), false);
+            List<CharacterDTO> characters = this.characterMapper.characterEntityList2DTOList(movieEntity.getCharacters(), false);
+            dto.setCharacters(characters);
         }
         return dto;
     }
