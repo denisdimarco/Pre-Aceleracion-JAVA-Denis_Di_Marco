@@ -73,6 +73,7 @@ public class MovieEntity {
     public void addCharacterToMovie(CharacterEntity character) {
         characters.add(character);
     }
+
     public void removeCharacterFromMovie(CharacterEntity character) {
         characters.remove(character);
     }

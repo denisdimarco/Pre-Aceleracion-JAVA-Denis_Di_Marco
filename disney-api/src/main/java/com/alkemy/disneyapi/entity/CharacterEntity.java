@@ -21,7 +21,7 @@ import java.util.List;
 @Table(name = "disney_character")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE character SET deleted = true WHERE id=?")
+@SQLDelete(sql = "UPDATE disney_character SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
 public class CharacterEntity {
 

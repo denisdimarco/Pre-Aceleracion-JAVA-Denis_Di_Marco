@@ -59,7 +59,11 @@ public class MovieController {
 
 
     //  TODO DELETE /movies/{genreId}/character/{characterId} (remove character from movie by ID)
-
+        @DeleteMapping("/{movieId}/character/{characterId}")
+        public ResponseEntity<Void> removeCharacterFromMovie(@PathVariable Long movieId, @PathVariable Long characterId) {
+            movieService.deleteCharacterFromMovie(movieId, characterId);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        }
 
 
     //TODO 10. BUSQUEDA DE PELICULAS (por filtros)
