@@ -31,7 +31,8 @@ public class MovieController {
     //  GET /movies/{id} (Buscar una sola pelicula y devuelve todos los campos de las peliculas junto con los personajes asociados)
 
     //TODO 9. CREACION, EDICION Y ELIMINACION DE PELICULA.
-    //  TODO POST /movies
+
+    //  POST /movies
         @PostMapping
         public ResponseEntity<MovieDTO> postNewMovie(@RequestBody MovieDTO movieDto) {
             MovieDTO savedMovie = movieService.saveNewMovie(movieDto);
@@ -40,6 +41,12 @@ public class MovieController {
 
 
     //  TODO PUT /movies/{id} (update movie by ID)
+        @PutMapping("/{id}")
+        public ResponseEntity<MovieDTO> updateMovieById(@PathVariable Long id, @RequestBody MovieDTO movieNewData) {
+            MovieDTO updatedMovie = movieService.updateMovieById(id, movieNewData);
+            return  ResponseEntity.status(HttpStatus.ACCEPTED).body(updatedMovie);
+        }
+
     //  TODO DELETE /movies/{id} (remove country byId)
     //  TODO DELETE /movies/{genreId}/character/{characterId} (remove character from movie by ID)
 

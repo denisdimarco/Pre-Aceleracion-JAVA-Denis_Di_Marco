@@ -86,4 +86,14 @@ public class MovieMapper {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(stringDate, formatter);
     }
+
+   public void movieEntityRefreshValues(MovieEntity entity, MovieDTO movieDTO) {
+        entity.setImage(movieDTO.getImage());
+        entity.setTitle(movieDTO.getTitle());
+        entity.setCreationDate(string2LocalDate(movieDTO.getCreationDate()));
+        entity.setRating(movieDTO.getRating());
+        entity.setGenreId(movieDTO.getGenreId());
+        entity.setCharacters(characterMapper.characterDTOList2EntityList(movieDTO.getCharacters()));
+
+   }
 }
