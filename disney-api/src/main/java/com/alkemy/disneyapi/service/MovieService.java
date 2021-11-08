@@ -14,4 +14,6 @@ public interface MovieService {
     MovieDTO saveNewMovie(MovieDTO movieDTO);
 
     MovieDTO updateMovieById(Long id, MovieDTO movieNewData);
+
+    void deleteMovie(Long id);
 }

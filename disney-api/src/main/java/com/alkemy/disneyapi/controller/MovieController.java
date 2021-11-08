@@ -42,7 +42,7 @@ public class MovieController {
             MovieDTO savedMovie = movieService.saveNewMovie(movieDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedMovie);
         }
-        
+
     // PUT /movies/{id} (update movie by ID) OK!
         @PutMapping("/{id}")
         public ResponseEntity<MovieDTO> updateMovieById(@PathVariable Long id, @RequestBody MovieDTO movieNewData) {
@@ -50,7 +50,14 @@ public class MovieController {
             return  ResponseEntity.status(HttpStatus.ACCEPTED).body(updatedMovie);
         }
 
-    //  TODO DELETE /movies/{id} (remove country byId)
+    //  DELETE /movies/{id} (remove movie byId)
+        @DeleteMapping("/{id}")
+        public ResponseEntity<Void> deleteMovieById(@PathVariable Long id) {
+            movieService.deleteMovie(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+
+
     //  TODO DELETE /movies/{genreId}/character/{characterId} (remove character from movie by ID)
 
 
