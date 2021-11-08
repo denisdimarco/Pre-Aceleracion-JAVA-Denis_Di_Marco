@@ -26,6 +26,13 @@ public class MovieServiceImpl implements MovieService {
         List<MovieEntity> entitiesList = movieRepository.findAll();
         return movieMapper.movieEntityList2BasicDTOList(entitiesList);
     }
+    public MovieDTO getMovieDetailsById(Long id) {
+        Optional<MovieEntity> movieEntity = movieRepository.findById(id);
+        if (!movieEntity.isPresent()) {
+            throw new ParamNotFound("Movie ID not valid.");
+        }
+        return movieMapper.movieEntity2DTO(movieEntity.get(), true);
+    }
 
     //SAVE
     public MovieDTO saveNewMovie(MovieDTO movieDTO) {

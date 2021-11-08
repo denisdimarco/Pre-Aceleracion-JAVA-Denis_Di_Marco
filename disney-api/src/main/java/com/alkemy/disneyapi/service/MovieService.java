@@ -9,6 +9,8 @@ import java.util.List;
 public interface MovieService {
     List<MovieBasicDTO> getAllMoviesLite();
 
+    MovieDTO getMovieDetailsById(Long id);
+
     MovieDTO saveNewMovie(MovieDTO movieDTO);
 
     MovieDTO updateMovieById(Long id, MovieDTO movieNewData);

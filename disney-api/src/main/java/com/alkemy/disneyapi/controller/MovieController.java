@@ -17,9 +17,8 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    //PEDIDOS POR EL CHALLENGE:
 
-    //TODO: 7. LISTADO DE PELICULAS BASICO
+    //7. LISTADO DE PELICULAS BASICO OK!
     //  GET /movies (Debera mostrar solamente los campos imagen, titulo y fecha de creacion)
     @GetMapping
     public ResponseEntity<List<MovieBasicDTO>> getAllMoviesLite() {
@@ -27,20 +26,24 @@ public class MovieController {
         return ResponseEntity.ok(moviesListLite);
     }
 
-    //TODO: 8. Detalle de Pelicula con personajes asociados
+    //8. Detalle de Pelicula con personajes asociados OK!
     //  GET /movies/{id} (Buscar una sola pelicula y devuelve todos los campos de las peliculas junto con los personajes asociados)
+    @GetMapping("/{id}")
+    public ResponseEntity<MovieDTO> getMovieDetailsById(@PathVariable Long id) {
+        MovieDTO movieDto = movieService.getMovieDetailsById(id);
+        return ResponseEntity.ok(movieDto);
+    }
 
     //TODO 9. CREACION, EDICION Y ELIMINACION DE PELICULA.
 
-    //  POST /movies
+    //  POST /movies OK!
         @PostMapping
         public ResponseEntity<MovieDTO> postNewMovie(@RequestBody MovieDTO movieDto) {
             MovieDTO savedMovie = movieService.saveNewMovie(movieDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedMovie);
         }
-
-
-    //  TODO PUT /movies/{id} (update movie by ID)
+        
+    // PUT /movies/{id} (update movie by ID) OK!
         @PutMapping("/{id}")
         public ResponseEntity<MovieDTO> updateMovieById(@PathVariable Long id, @RequestBody MovieDTO movieNewData) {
             MovieDTO updatedMovie = movieService.updateMovieById(id, movieNewData);
@@ -57,9 +60,6 @@ public class MovieController {
     // /movies?genre=genderId
     // /movies?order=ASC | DESC
 
-
-    //NO PEDIDO POR EL CHALLENGE
-    //GET /movies/details (Devuelve todos los campos de TODAS las peliculas junto con los personajes asociados)
 
 
 
