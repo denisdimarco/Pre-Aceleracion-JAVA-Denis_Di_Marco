@@ -17,7 +17,7 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    //7. Basic Movie List - OK!
+    //7. Basic Movie List
     //GET /movies (It must show only image, title and creation date fields)
     @GetMapping
     public ResponseEntity<List<MovieBasicDTO>> getAllMoviesLite() {
@@ -25,8 +25,8 @@ public class MovieController {
         return ResponseEntity.ok(moviesListLite);
     }
 
-    //8. Movie details with associated characters - OK!
-    // GET /movies/{id} (Search a movie and show every field of the movie with associated characters)
+    //8. Movie details with associated characters
+    //GET /movies/{id} (Search a movie and show every field of the movie with associated characters)
     @GetMapping("/{id}")
     public ResponseEntity<MovieDTO> getMovieDetailsById(@PathVariable Long id) {
         MovieDTO movieDto = movieService.getMovieDetailsById(id);
@@ -34,14 +34,14 @@ public class MovieController {
     }
 
     //9. Creation, edition and deleting of a movie.
-    //POST /movies OK!
+    //POST /movies
     @PostMapping
     public ResponseEntity<MovieDTO> postNewMovie(@RequestBody MovieDTO movieDto) {
         MovieDTO savedMovie = movieService.saveNewMovie(movieDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedMovie);
     }
 
-    // POST /movies/{movieId}/character/{characterId} OK!
+    //POST /movies/{movieId}/character/{characterId}
     @PostMapping("/{movieId}/character/{characterId}")
     public ResponseEntity<Void> addCharacterToMovie(@PathVariable Long movieId, @PathVariable Long characterId) {
         movieService.addCharacterToMovie(movieId, characterId);
@@ -55,21 +55,21 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatedMovie);
     }
 
-    //DELETE /movies/{id} (remove movie byId) - OK!
+    //DELETE /movies/{id} (remove movie byId)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMovieById(@PathVariable Long id) {
         movieService.deleteMovie(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    //DELETE /movies/{genreId}/character/{characterId} (remove a character from a movie by IDs) - OK!
+    //DELETE /movies/{genreId}/character/{characterId} (remove a character from a movie by IDs)
     @DeleteMapping("/{movieId}/character/{characterId}")
     public ResponseEntity<Void> removeCharacterFromMovie(@PathVariable Long movieId, @PathVariable Long characterId) {
         movieService.deleteCharacterFromMovie(movieId, characterId);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
-    //10. Search movies by filters - OK!
+    //10. Search movies by filters
     // /movies?title=name
     // /movies?genre=genderId
     // /movies?order=ASC | DESC

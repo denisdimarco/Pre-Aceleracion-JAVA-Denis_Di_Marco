@@ -17,8 +17,8 @@ public class CharacterController {
     @Autowired
     private CharacterService characterService;
 
-    //3. Basic Character List
-    //GET /characters (It must show only image and name fields)
+    //3. Basic Character List (It must show only image and name fields)
+    //GET /characters
     @GetMapping
     public ResponseEntity<List<CharacterBasicDTO>> getAllCharactersLite() {
         List<CharacterBasicDTO> charactersBasicList = characterService.getAllCharactersBasic();
@@ -33,7 +33,7 @@ public class CharacterController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCharacter);
     }
 
-    //TODO PUT /characters/{id}
+    //PUT /characters/{id}
     @PutMapping("/{id}")
     public ResponseEntity<CharacterDTO> updateCharacterById(@PathVariable Long id, @RequestBody CharacterDTO characterDto) {
         CharacterDTO updatedCharacter = characterService.updateCharacter(id, characterDto);
@@ -48,14 +48,14 @@ public class CharacterController {
     }
 
     //5. Full Character details with associated movies.
+    //GET /characters/{id}
     @GetMapping("/{id}")
     public ResponseEntity<CharacterDTO> getCharactersDetailsById(@PathVariable Long id) {
         CharacterDTO characterDto = characterService.getCharacterDetailsById(id);
         return ResponseEntity.ok(characterDto);
     }
 
-    //6. Search Characters by filters
-
+    //6. Search characters by filters
     // GET /characters/filters?name=name
     // GET /characters/filters?age=age
     // GET /characters/filters?movies=movieId
@@ -68,5 +68,4 @@ public class CharacterController {
         List<CharacterDTO> characterDTOList = characterService.getCharactersByFilters(name, age, movies);
         return ResponseEntity.ok(characterDTOList);
     }
-
 }

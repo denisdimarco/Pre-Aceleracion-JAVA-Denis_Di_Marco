@@ -24,6 +24,7 @@ public class GenreController {
         return ResponseEntity.ok().body(genreDtoList);
     }
 
+    //GET /genres/{id}
     @GetMapping("/{id}")
     public ResponseEntity<GenreDTO> getGenreById(@PathVariable Long id) {
         GenreDTO genreDto = genreService.getGenreById(id);
@@ -44,6 +45,7 @@ public class GenreController {
         return ResponseEntity.ok().body(updatedGenre);
     }
 
+    //DELETE /genres/{id}
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteGenreById(@PathVariable Long id) {
         genreService.deleteGenreInDB(id);
