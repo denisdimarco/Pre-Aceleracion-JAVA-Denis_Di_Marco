@@ -62,14 +62,14 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    //DELETE /movies/{genreId}/character/{characterId} (remove a character from a movie by IDs)
+    //DELETE /movies/{genreId}/character/{characterId} (remove a character from a movie by IDs) - OK!
     @DeleteMapping("/{movieId}/character/{characterId}")
     public ResponseEntity<Void> removeCharacterFromMovie(@PathVariable Long movieId, @PathVariable Long characterId) {
         movieService.deleteCharacterFromMovie(movieId, characterId);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
-    //10. Search movies by filters
+    //10. Search movies by filters - OK!
     // /movies?title=name
     // /movies?genre=genderId
     // /movies?order=ASC | DESC
