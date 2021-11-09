@@ -63,4 +63,14 @@ public class CharacterServiceImpl implements CharacterService {
         characterRepository.deleteById(id);
     }
 
+    public CharacterDTO updateCharacter(Long id, CharacterDTO characterNewData){
+        Optional<CharacterEntity> entity = this.characterRepository.findById(id);
+        if (!entity.isPresent()) {
+            throw new ParamNotFound("Character ID not valid");
+        }
+        characterMapper.characterEntityRefreshValues(entity.get(), characterNewData);
+        CharacterEntity entitySaved = characterRepository.save(entity.get());
+        return characterMapper.characterEntity2DTO(entitySaved, false);
+    }
+
 }

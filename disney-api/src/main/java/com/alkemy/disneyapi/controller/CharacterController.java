@@ -33,6 +33,11 @@ public class CharacterController {
     }
 
     //TODO PUT /characters/{id}
+    @PutMapping("/{id}")
+    public ResponseEntity<CharacterDTO> updateCharacterById(@PathVariable Long id, @RequestBody CharacterDTO characterDto) {
+        CharacterDTO updatedCharacter = characterService.updateCharacter(id, characterDto);
+        return ResponseEntity.ok().body(updatedCharacter);
+    }
 
     //DELETE /characters/{id}
     @DeleteMapping("/{id}")
@@ -41,7 +46,7 @@ public class CharacterController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    //TODO 5. Full Character details with associated movies.
+    //5. Full Character details with associated movies.
     @GetMapping("/{id}")
     public ResponseEntity<CharacterDTO> getCharactersDetailsById(@PathVariable Long id) {
         CharacterDTO characterDto = characterService.getCharacterDetailsById(id);

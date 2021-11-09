@@ -78,4 +78,13 @@ public class CharacterMapper {
         return dtoBasicList;
     }
 
+    /* Character entity refresh values */
+    public void characterEntityRefreshValues(CharacterEntity entity, CharacterDTO characterDto) {
+        entity.setImage(characterDto.getImage());
+        entity.setName(characterDto.getName());
+        entity.setAge(characterDto.getAge());
+        entity.setWeight(characterDto.getWeight());
+        entity.setHistory(characterDto.getHistory());
+
+    }
 }
