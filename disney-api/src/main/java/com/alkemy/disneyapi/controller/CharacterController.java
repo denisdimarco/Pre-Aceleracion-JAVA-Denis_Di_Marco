@@ -16,26 +16,30 @@ public class CharacterController {
     @Autowired
     private CharacterService characterService;
 
-    //TODO 3. Basic Character List
+    //3. Basic Character List
     //GET /characters (It must show only image and name fields)
     @GetMapping
     public ResponseEntity<List<CharacterBasicDTO>> getAllCharactersLite() {
         List<CharacterBasicDTO> charactersBasicList = characterService.getAllCharactersBasic();
         return ResponseEntity.ok(charactersBasicList);
     }
+
     //4. CRUD
-    //TODO POST /characters
-        @PostMapping
-        public ResponseEntity<CharacterDTO> postNewCharacter(@RequestBody CharacterDTO characterDto) {
+    //POST /characters
+    @PostMapping
+    public ResponseEntity<CharacterDTO> postNewCharacter(@RequestBody CharacterDTO characterDto) {
         CharacterDTO savedCharacter = characterService.saveNewCharacter(characterDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCharacter);
-        }
-        
+    }
+
     //TODO PUT /characters/{id}
 
-    //TODO DELETE /characters/{id}
-
-
+    //DELETE /characters/{id}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCharacterById(@PathVariable Long id) {
+        characterService.deleteCharacter(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
     //TODO 5. Full Character details with associated movies.
     @GetMapping("/{id}")

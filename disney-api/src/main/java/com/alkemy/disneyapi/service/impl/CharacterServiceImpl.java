@@ -59,4 +59,8 @@ public class CharacterServiceImpl implements CharacterService {
 
     }
 
+    public void deleteCharacter(Long id) {
+        characterRepository.deleteById(id);
+    }
+
 }
