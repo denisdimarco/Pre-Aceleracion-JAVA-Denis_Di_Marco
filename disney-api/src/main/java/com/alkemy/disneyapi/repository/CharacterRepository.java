@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CharacterRepository extends JpaRepository<CharacterEntity, Long> {
+public interface CharacterRepository extends JpaRepository<CharacterEntity, Long>  {
 
     List<CharacterEntity> findAll(Specification<CharacterEntity> spec);
 }

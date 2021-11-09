@@ -27,21 +27,13 @@ public class CharacterServiceImpl implements CharacterService {
     @Autowired
     private CharacterSpecification characterSpecification;
 
+
     public CharacterEntity getCharacterEntityById(Long characterId) {
         Optional<CharacterEntity> character = characterRepository.findById(characterId);
         if (!character.isPresent()) {
             throw new ParamNotFound("Character Id not valid");
         }
         return character.get();
-    }
-
-    public CharacterDTO findCharacterDtoById(Long id) {
-        Optional<CharacterEntity> character = characterRepository.findById(id);
-        if (!character.isPresent()) {
-            throw new ParamNotFound("Character Id not found");
-        }
-        return characterMapper.characterEntity2DTO((character.get()), false);
-
     }
 
     public List<CharacterBasicDTO> getAllCharactersBasic() {

@@ -85,7 +85,6 @@ public class MovieServiceImpl implements MovieService {
     }
 
     //Filters
-
     public List<MovieDTO> getMoviesByFilters(String title, String genre, String order) {
         MovieFiltersDTO movieFiltersDto = new MovieFiltersDTO(title, genre, order);
         List<MovieEntity> movieEntities = movieRepository.findAll(movieSpecifications.getByFilters(movieFiltersDto));
@@ -108,6 +107,5 @@ public class MovieServiceImpl implements MovieService {
         movie.addCharacterToMovie(characterEntity);
         movieRepository.save(movie);
     }
-
 
 }

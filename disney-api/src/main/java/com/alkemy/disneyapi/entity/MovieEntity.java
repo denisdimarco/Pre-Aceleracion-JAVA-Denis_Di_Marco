@@ -45,7 +45,7 @@ public class MovieEntity {
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate creationDate;
 
-    private Integer rating; //(1 to 5)
+    private Integer rating;
 
     private boolean deleted = Boolean.FALSE;
 

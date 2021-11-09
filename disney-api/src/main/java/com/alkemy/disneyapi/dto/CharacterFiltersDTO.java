@@ -12,7 +12,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CharacterFiltersDTO {
-
     private String name;
     private Integer age;
     private Set<Long> movies;

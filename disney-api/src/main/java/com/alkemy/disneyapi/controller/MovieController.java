@@ -48,7 +48,7 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    //PUT /movies/{id} (update movie by ID) OK!
+    //PUT /movies/{id} (update movie by ID)
     @PutMapping("/{id}")
     public ResponseEntity<MovieDTO> updateMovieById(@PathVariable Long id, @RequestBody MovieDTO movieNewData) {
         MovieDTO updatedMovie = movieService.updateMovieById(id, movieNewData);
@@ -70,9 +70,9 @@ public class MovieController {
     }
 
     //10. Search movies by filters
-    // /movies?title=name
-    // /movies?genre=genderId
-    // /movies?order=ASC | DESC
+    // /movies/filters?title=name
+    // /movies/filters?genre=genderId
+    // /movies/filters?order=ASC | DESC
     @GetMapping("/filters")
     public ResponseEntity<List<MovieDTO>> getMoviesDetailsByFilters (
             @RequestParam(required = false) String title,
@@ -81,7 +81,6 @@ public class MovieController {
     )
         { List<MovieDTO> filteredMovies = movieService.getMoviesByFilters(title, genre, order);
             return ResponseEntity.ok(filteredMovies);
-
     }
 
 }

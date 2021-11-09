@@ -8,16 +8,24 @@ import java.util.List;
 import java.util.Set;
 
 public interface CharacterService {
-
+    //GET
     CharacterEntity getCharacterEntityById(Long characterId);
-    CharacterDTO findCharacterDtoById(Long id);
+
     List<CharacterBasicDTO> getAllCharactersBasic();
-    CharacterDTO  getCharacterDetailsById (Long characterId);
 
+    CharacterDTO getCharacterDetailsById(Long characterId);
+
+    //GET BY FILTERS
+    List<CharacterDTO> getCharactersByFilters(String name, Integer age, Set<Long> movies);
+
+    //SAVE
     CharacterDTO saveNewCharacter(CharacterDTO characterDTO);
-    void deleteCharacter(Long id);
 
+    //UPDATE
     CharacterDTO updateCharacter(Long id, CharacterDTO character);
 
-    List<CharacterDTO> getCharactersByFilters(String name, Integer age, Set<Long> movies);
+    //DELETE
+    void deleteCharacter(Long id);
+
+
 }
