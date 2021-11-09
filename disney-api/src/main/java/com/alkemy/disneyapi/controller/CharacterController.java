@@ -4,11 +4,9 @@ import com.alkemy.disneyapi.dto.CharacterBasicDTO;
 import com.alkemy.disneyapi.dto.CharacterDTO;
 import com.alkemy.disneyapi.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,11 +23,21 @@ public class CharacterController {
         List<CharacterBasicDTO> charactersBasicList = characterService.getAllCharactersBasic();
         return ResponseEntity.ok(charactersBasicList);
     }
-    //TODO 4. CRUD
+    //4. CRUD
     //TODO POST /characters
-    //TODO POST /characters/{
+        @PostMapping
+        public ResponseEntity<CharacterDTO> postNewCharacter(@RequestBody CharacterDTO characterDto) {
+        CharacterDTO savedCharacter = characterService.saveNewCharacter(characterDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedCharacter);
+        }
+        
+    //TODO PUT /characters/{id}
 
-    //TODO 5. Full Character Details with associated movies.
+    //TODO DELETE /characters/{id}
+
+
+
+    //TODO 5. Full Character details with associated movies.
     @GetMapping("/{id}")
     public ResponseEntity<CharacterDTO> getCharactersDetailsById(@PathVariable Long id) {
         CharacterDTO characterDto = characterService.getCharacterDetailsById(id);
@@ -37,7 +45,7 @@ public class CharacterController {
     }
 
     //TODO 6. Search Characters by filters
-
+    //TODO GET /filters
     // GET /characters?name=name
     // GET /characters?age=age
     // GET /characters?movies=movieId

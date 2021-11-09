@@ -52,4 +52,11 @@ public class CharacterServiceImpl implements CharacterService {
         return characterMapper.characterEntity2DTO(character.get(), true);
     }
 
+    public CharacterDTO saveNewCharacter(CharacterDTO characterDTO) {
+        CharacterEntity entity = characterMapper.characterDTO2Entity(characterDTO);
+        CharacterEntity entitySaved = characterRepository.save(entity);
+        return characterMapper.characterEntity2DTO(entitySaved, false);
+
+    }
+
 }

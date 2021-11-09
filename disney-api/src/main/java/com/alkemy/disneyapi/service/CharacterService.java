@@ -12,4 +12,6 @@ public interface CharacterService {
     CharacterDTO findCharacterDtoById(Long id);
     List<CharacterBasicDTO> getAllCharactersBasic();
     CharacterDTO  getCharacterDetailsById (Long characterId);
+
+    CharacterDTO saveNewCharacter(CharacterDTO characterDTO);
 }
