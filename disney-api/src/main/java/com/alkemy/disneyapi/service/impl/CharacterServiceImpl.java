@@ -2,17 +2,20 @@ package com.alkemy.disneyapi.service.impl;
 
 import com.alkemy.disneyapi.dto.CharacterBasicDTO;
 import com.alkemy.disneyapi.dto.CharacterDTO;
+import com.alkemy.disneyapi.dto.CharacterFiltersDTO;
 import com.alkemy.disneyapi.entity.CharacterEntity;
 
 import com.alkemy.disneyapi.exception.ParamNotFound;
 import com.alkemy.disneyapi.mapper.CharacterMapper;
 import com.alkemy.disneyapi.repository.CharacterRepository;
+import com.alkemy.disneyapi.repository.specifications.CharacterSpecification;
 import com.alkemy.disneyapi.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CharacterServiceImpl implements CharacterService {
@@ -21,6 +24,8 @@ public class CharacterServiceImpl implements CharacterService {
     private CharacterRepository characterRepository;
     @Autowired
     private CharacterMapper characterMapper;
+    @Autowired
+    private CharacterSpecification characterSpecification;
 
     public CharacterEntity getCharacterEntityById(Long characterId) {
         Optional<CharacterEntity> character = characterRepository.findById(characterId);
@@ -73,4 +78,9 @@ public class CharacterServiceImpl implements CharacterService {
         return characterMapper.characterEntity2DTO(entitySaved, false);
     }
 
+    public List<CharacterDTO> getCharactersByFilters(String name, Integer age, Set<Long> movies) {
+        CharacterFiltersDTO characterFiltersDto = new CharacterFiltersDTO(name, age, movies);
+        List<CharacterEntity> entitiesList = characterRepository.findAll(characterSpecification.getByFilters(characterFiltersDto));
+        return characterMapper.characterEntityList2DTOList(entitiesList, true);
+    }
 }

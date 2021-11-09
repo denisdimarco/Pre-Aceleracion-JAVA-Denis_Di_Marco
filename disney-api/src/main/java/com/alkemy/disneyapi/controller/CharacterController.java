@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("characters")
@@ -53,11 +54,19 @@ public class CharacterController {
         return ResponseEntity.ok(characterDto);
     }
 
-    //TODO 6. Search Characters by filters
-    //TODO GET /filters
-    // GET /characters?name=name
-    // GET /characters?age=age
-    // GET /characters?movies=movieId
+    //6. Search Characters by filters
 
+    // GET /characters/filters?name=name
+    // GET /characters/filters?age=age
+    // GET /characters/filters?movies=movieId
+    @GetMapping("/filters")
+    public ResponseEntity<List<CharacterDTO>> getCharacterDetailsByFilters(
+            @RequestParam (required = false) String name,
+            @RequestParam (required = false) Integer age,
+            @RequestParam (required = false) Set<Long> movies
+    ) {
+        List<CharacterDTO> characterDTOList = characterService.getCharactersByFilters(name, age, movies);
+        return ResponseEntity.ok(characterDTOList);
+    }
 
 }
