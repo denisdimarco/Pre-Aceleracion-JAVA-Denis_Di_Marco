@@ -41,7 +41,7 @@ following the REST pattern, that allows to know and modify the catalog of charac
     + `spring.datasource.username=root` 
     + `spring.datasource.password=root` 
 
-**4. Setup Environment Variables in your IDE.**
+**4. Setup Environment Variables for SendGrid email service.**
 
 + Create an account on https://app.sendgrid.com and get your API Key.
 
@@ -52,7 +52,7 @@ following the REST pattern, that allows to know and modify the catalog of charac
   
 + Open `disney-api/src/main/resources/application.properties` file
 + Change to your SendGrid registered email in `alkemy.disneyapi.email.sender=youremail@mail.com `
-+ 
+
 **5. Build and Run.**
 
 The app will run at: http://localhost:8080/
