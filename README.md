@@ -3,17 +3,30 @@
 
 ## Requirements
 
-1. Java - 11 or greater
-2. Maven - 3 or greater
-3. Mysql - 8 or greater
+1. Java 11 or greater
+2. Maven 3 or greater
+3. Mysql 8 or greater
 
 ##Setup
 
-1. Clone 
+1. Clone repository.
    ```bash
     git clone https://github.com/denisdimarco/Pre-Aceleracion-JAVA-Denis_Di_Marco.git
     ```
+**2. Create DataBase in MySql**
 
+```bash
+    create database disney
+```
+
+**3. Change MySql username and password in application.properties**
+
++ open `disney-api/src/main/resources/application.properties`
+
+
++ Change the username and password as you have configured your MySQL
+    + `spring.datasource.username=` 
+    + `spring.datasource.password=` 
 
 
 > **[Link postman Workspace]**
