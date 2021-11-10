@@ -1,14 +1,13 @@
 # Challenge Backend Final - **Java**
 ## Spring Boot (API) Pre-Aceleración - Alkemy 
 
----
 
 ### Target
 
     
 >The objective of this challenge is to develop an API using Java SpringBoot and SpringSecurity, 
 following the REST pattern, that allows to know and modify the catalog of characters, movies and genres of Disney movies.
-***
+
 ### Requirements
 
 - Java 11.
