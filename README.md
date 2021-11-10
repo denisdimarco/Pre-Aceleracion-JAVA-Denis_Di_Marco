@@ -60,6 +60,9 @@ The app will run at: http://localhost:8080/
 ***
 
 **Postman Workspace:**
+> `disney-api/doc/postman`
+
+or
 
 > https://www.postman.com/avionics-administrator-75630177/workspace/alkemy-challenge-disneyapi-workspace
 
