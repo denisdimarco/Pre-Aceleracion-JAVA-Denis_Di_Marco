@@ -1,7 +1,7 @@
 # Challenge Backend Final - **Java**
 ## Spring Boot (API) Pre-Aceleración - Alkemy 
 
-***
+---
 
 ### Target
 
